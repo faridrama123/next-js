@@ -1,8 +1,10 @@
-// pages/404.tsx
+import Layout from "../../component/Layout/layout";
 export default function index() {
   return (
-    <>
-      <h1>user</h1>
+      <>
+      <Layout pageTitle="User Page">
+        <h1>user page</h1>
+      </Layout>
     </>
   );
 }

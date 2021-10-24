@@ -1,8 +1,10 @@
-// pages/500.tsx
+import Layout from "../../component/Layout/layout";
 export default function detail() {
   return (
-    <>
-      <h1>detail user</h1>
+      <>
+      <Layout pageTitle="Detail User Page">
+        <h1>detail user</h1>
+      </Layout>
     </>
   )
 }
