@@ -1,31 +1,38 @@
 import Layout from "../../component/Layout/layout";
-
+import { useRouter } from "next/router";
+import styles from "../../styles/User.module.css";
 
 interface UsersProps {
   dataUsers: Array<any>;
 }
 
-export default function index(props : UsersProps) {
-  const {dataUsers } = props;
+export default function Users(props: UsersProps) {
+  const { dataUsers } = props;
+  const router = useRouter();
+
   console.log(dataUsers);
   return (
-    <>
-      <Layout pageTitle="User Page">
-        <h1>Data User</h1>
-        {dataUsers.map((user) => (
-          <p key={user.id}> {user.name}</p>
+    <Layout pageTitle="Users Page">
+      {dataUsers.map((user) => (
+        <div
+          key={user.id}
+          onClick={() => router.push(`/user/${user.id}`)}
+          className={styles.card}
+        >
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+        </div>
       ))}
-      </Layout>
-    </>
+    </Layout>
   );
 }
 
-export async function getStaticProps (){
-  const res = await fetch ('https://jsonplaceholder.typicode.com/users')
+export async function getStaticProps() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
   const dataUsers = await res.json();
   return {
-    props :{
-      dataUsers
-    }
-  }
+    props: {
+      dataUsers,
+    },
+  };
 }
